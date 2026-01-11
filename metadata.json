@@ -1,0 +1,7 @@
+{
+  "name": "CampusPulse AI",
+  "description": "AI-powered real-time campus problem detection and resolution system. Report issues via text/voice, and let AI categorize and route them instantly.",
+  "requestFramePermissions": [
+    "microphone"
+  ]
+}

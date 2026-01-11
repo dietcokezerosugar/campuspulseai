@@ -1,0 +1,71 @@
+/* Global Base Styles */
+:root {
+  --sakura-main: 340 65% 65%;
+  --sakura-dark: 340 70% 55%;
+  --sakura-glow: 340 80% 75%;
+}
+
+body {
+  margin: 0;
+  /* Background and text color handled by utility classes on body tag, 
+     but adding fallback here just in case */
+  background-color: hsl(0 0% 98%);
+  color: hsl(240 10% 10%);
+}
+
+.text-gradient-sakura {
+  background: linear-gradient(135deg, hsl(340 70% 55%), hsl(340 65% 65%), hsl(340 70% 55%));
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+
+/* Glassmorphism - Matching Spec: backdrop-blur-xl (24px) */
+/* Glassmorphism - Matching Spec: backdrop-blur-xl (24px) */
+.glass-panel {
+  background: hsla(0, 0%, 100%, 0.85);
+  /* Increased opacity for better readability */
+  backdrop-filter: blur(24px);
+  -webkit-backdrop-filter: blur(24px);
+  border: 1px solid hsla(340, 15%, 88%, 0.8);
+  /* Stronger border for separation */
+  box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.08);
+  /* Slightly stronger shadow */
+}
+
+.dark .glass-panel {
+  background: hsla(240, 10%, 10%, 0.85);
+  border: 1px solid hsla(340, 15%, 88%, 0.2);
+}
+
+/* Custom Scrollbar */
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+::-webkit-scrollbar-thumb {
+  background: hsl(340 20% 85%);
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: hsl(340 30% 75%);
+}
+
+/* Animation Utilities that might not be covered by Tailwind CDN config fully */
+.animate-delay-100 {
+  animation-delay: 100ms;
+}
+
+.animate-delay-200 {
+  animation-delay: 200ms;
+}
+
+.animate-delay-300 {
+  animation-delay: 300ms;
+}

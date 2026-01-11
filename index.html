@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>CampusPulse AI - Sakura Edition</title>
+  <!-- Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link
+    href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;0,700;1,400&family=IBM+Plex+Mono:wght@300;400;500&family=Montserrat:wght@300;400;500;600;700&display=swap"
+    rel="stylesheet">
+
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      darkMode: 'class',
+      theme: {
+        extend: {
+          fontFamily: {
+            display: ['"Cormorant Garamond"', 'serif'],
+            sans: ['"Montserrat"', 'sans-serif'],
+            mono: ['"IBM Plex Mono"', 'monospace'],
+          },
+          colors: {
+            border: 'hsl(340 15% 88%)',
+            input: 'hsl(340 15% 88%)',
+            ring: 'hsl(340 65% 65%)',
+            background: 'hsl(0 0% 98%)',
+            foreground: 'hsl(240 10% 10%)',
+            primary: {
+              DEFAULT: 'hsl(340 65% 65%)',
+              foreground: 'hsl(0 0% 100%)',
+            },
+            secondary: {
+              DEFAULT: 'hsl(340 20% 94%)',
+              foreground: 'hsl(240 10% 10%)',
+            },
+            muted: {
+              DEFAULT: 'hsl(340 10% 90%)',
+              foreground: 'hsl(240 5% 45%)',
+            },
+            accent: {
+              DEFAULT: 'hsl(340 30% 88%)',
+              foreground: 'hsl(240 10% 10%)',
+            },
+            card: {
+              DEFAULT: 'hsl(0 0% 100%)',
+              foreground: 'hsl(240 10% 10%)',
+            },
+            sakura: {
+              DEFAULT: 'hsl(340 65% 65%)',
+              dark: 'hsl(340 70% 55%)',
+              light: 'hsl(340 60% 92%)',
+              glow: 'hsl(340 80% 75% / 0.4)',
+            },
+            snow: 'hsl(210 30% 98%)',
+            frost: 'hsl(210 25% 94%)',
+            petal: 'hsl(340 60% 85%)',
+            blossom: 'hsl(350 55% 78%)',
+            branch: 'hsl(30 25% 35%)',
+          },
+          borderRadius: {
+            DEFAULT: '0.75rem',
+            lg: '1.5rem',
+            full: '9999px',
+          },
+          boxShadow: {
+            'sakura': '0 4px 20px hsl(340 60% 70% / 0.25)',
+            'glow': '0 0 30px hsl(340 80% 70% / 0.4)',
+            'glass': '0 8px 32px 0 rgba(31, 38, 135, 0.07)',
+          },
+          animation: {
+            'fade-up': 'fadeUp 0.6s ease-out forwards',
+            'fade-in': 'fadeIn 0.8s ease-out forwards',
+            'scale-up': 'scaleUp 0.4s ease-out forwards',
+            'float': 'float 6s ease-in-out infinite',
+            'sway': 'sway 4s ease-in-out infinite',
+            'sakura-fall': 'sakuraFall 10s linear infinite',
+          },
+          keyframes: {
+            fadeUp: {
+              '0%': { opacity: '0', transform: 'translateY(20px)' },
+              '100%': { opacity: '1', transform: 'translateY(0)' },
+            },
+            fadeIn: {
+              '0%': { opacity: '0' },
+              '100%': { opacity: '1' },
+            },
+            scaleUp: {
+              '0%': { opacity: '0', transform: 'scale(0.95)' },
+              '100%': { opacity: '1', transform: 'scale(1)' },
+            },
+            float: {
+              '0%, 100%': { transform: 'translateY(0)' },
+              '50%': { transform: 'translateY(-10px)' },
+            },
+            sway: {
+              '0%, 100%': { transform: 'rotate(-3deg)' },
+              '50%': { transform: 'rotate(3deg)' },
+            },
+            sakuraFall: {
+              '0%': { transform: 'translateY(-10vh) translateX(0) rotate(0deg)', opacity: '0' },
+              '10%': { opacity: '1' },
+              '90%': { opacity: '1' },
+              '100%': { transform: 'translateY(110vh) translateX(20px) rotate(360deg)', opacity: '0' },
+            }
+          }
+        }
+      }
+    }
+  </script>
+  <style>
+    /* Base styles to ensure fonts load */
+    body {
+      font-family: 'Montserrat', sans-serif;
+    }
+
+    h1,
+    h2,
+    h3,
+    h4,
+    h5,
+    h6 {
+      font-family: 'Cormorant Garamond', serif;
+    }
+  </style>
+  <script type="importmap">
+{
+  "imports": {
+    "react/": "https://esm.sh/react@^19.2.3/",
+    "react": "https://esm.sh/react@^19.2.3",
+    "@google/genai": "https://esm.sh/@google/genai@^1.34.0",
+    "lucide-react": "https://esm.sh/lucide-react@^0.562.0",
+    "recharts": "https://esm.sh/recharts@^3.6.0",
+    "react-dom/": "https://esm.sh/react-dom@^19.2.3/"
+  }
+}
+</script>
+  <link rel="stylesheet" href="/index.css">
+</head>
+
+<body
+  class="bg-background text-foreground transition-colors duration-300 antialiased overflow-x-hidden selection:bg-sakura selection:text-white">
+  <div id="root"></div>
+  <script>
+    // Enforcing Sakura Light Theme for consistency
+    document.documentElement.classList.remove('dark');
+    localStorage.theme = 'light';
+  </script>
+  <script type="module" src="/index.tsx"></script>
+</body>
+
+</html>
