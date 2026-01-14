@@ -19,7 +19,7 @@ export const ReportIssue: React.FC<ReportIssueProps> = ({ onAddIssue }) => {
       alert("Browser does not support speech recognition. Please type.");
       return;
     }
-    
+
     setIsListening(!isListening);
     if (!isListening) {
       setTimeout(() => {
@@ -39,7 +39,7 @@ export const ReportIssue: React.FC<ReportIssueProps> = ({ onAddIssue }) => {
 
   const handleSubmit = () => {
     if (!analysis) return;
-    
+
     const newIssue: IssueReport = {
       id: `iss_${Date.now()}`,
       type: analysis.type,
@@ -62,17 +62,17 @@ export const ReportIssue: React.FC<ReportIssueProps> = ({ onAddIssue }) => {
   return (
     <div className="max-w-2xl mx-auto space-y-8">
       <div className="text-center space-y-2">
-        <h2 className="text-3xl font-bold text-slate-900 dark:text-white">Report or Suggest</h2>
-        <p className="text-slate-500 dark:text-slate-400">Describe a problem to fix, or an idea to improve campus.</p>
+        <h2 className="text-3xl font-bold text-slate-900 dark:text-[#E5E7EB]">Report or Suggest</h2>
+        <p className="text-slate-500 dark:text-[#9CA3AF]">Describe a problem to fix, or an idea to improve campus.</p>
       </div>
 
-      <div className="bg-white dark:bg-slate-800 p-6 rounded-2xl shadow-sm border border-slate-200 dark:border-slate-700 transition-colors">
+      <div className="bg-white dark:bg-[#0A0A0A] p-6 rounded-2xl shadow-sm border border-slate-200 dark:border-white/5 transition-colors">
         <div className="relative">
           <textarea
             value={input}
             onChange={(e) => setInput(e.target.value)}
             placeholder="e.g., 'Water leak in library' OR 'We need more power outlets in the study hall'"
-            className="w-full h-40 p-4 rounded-xl border border-slate-200 dark:border-slate-600 bg-white dark:bg-slate-900 focus:border-blue-500 focus:ring-2 focus:ring-blue-200 dark:focus:ring-blue-900 outline-none resize-none text-slate-700 dark:text-slate-200 text-lg placeholder:text-slate-400 transition-colors"
+            className="w-full h-40 p-4 rounded-xl border border-slate-200 dark:border-white/10 bg-white dark:bg-[#0F0F0F] focus:border-blue-500 focus:ring-2 focus:ring-blue-200 dark:focus:ring-[#F472B6]/30 outline-none resize-none text-slate-700 dark:text-[#E5E7EB] text-lg placeholder:text-slate-400 dark:placeholder:text-[#6B7280] transition-colors"
           />
           <button
             onClick={toggleListening}
@@ -106,14 +106,12 @@ export const ReportIssue: React.FC<ReportIssueProps> = ({ onAddIssue }) => {
       {/* Analysis Result Card */}
       {analysis && (
         <div className="bg-white dark:bg-slate-800 rounded-2xl shadow-lg border border-blue-100 dark:border-slate-600 overflow-hidden animate-in fade-in slide-in-from-bottom-4 duration-500">
-          <div className={`p-4 border-b flex justify-between items-center ${
-            analysis.type === ReportType.SUGGESTION 
-              ? 'bg-amber-50 dark:bg-amber-900/20 border-amber-100 dark:border-amber-800/30' 
-              : 'bg-blue-50 dark:bg-blue-900/20 border-blue-100 dark:border-blue-800/30'
-          }`}>
-            <h3 className={`font-bold flex items-center ${
-              analysis.type === ReportType.SUGGESTION ? 'text-amber-900 dark:text-amber-400' : 'text-blue-900 dark:text-blue-400'
+          <div className={`p-4 border-b flex justify-between items-center ${analysis.type === ReportType.SUGGESTION
+            ? 'bg-amber-50 dark:bg-amber-900/20 border-amber-100 dark:border-amber-800/30'
+            : 'bg-blue-50 dark:bg-blue-900/20 border-blue-100 dark:border-blue-800/30'
             }`}>
+            <h3 className={`font-bold flex items-center ${analysis.type === ReportType.SUGGESTION ? 'text-amber-900 dark:text-amber-400' : 'text-blue-900 dark:text-blue-400'
+              }`}>
               {analysis.type === ReportType.SUGGESTION ? (
                 <Lightbulb className="h-4 w-4 mr-2 text-amber-600 dark:text-amber-400" />
               ) : (
@@ -125,13 +123,13 @@ export const ReportIssue: React.FC<ReportIssueProps> = ({ onAddIssue }) => {
               {(analysis.confidence * 100).toFixed(0)}% Confidence
             </span>
           </div>
-          
+
           <div className="p-6 grid gap-6 md:grid-cols-2">
             <div className="space-y-1">
               <label className="text-xs font-bold text-slate-400 uppercase tracking-wider">Summary</label>
               <p className="font-semibold text-slate-900 dark:text-white text-lg">{analysis.summary}</p>
             </div>
-            
+
             <div className="space-y-1">
               <label className="text-xs font-bold text-slate-400 uppercase tracking-wider">Location</label>
               <div className="flex items-center text-slate-700 dark:text-slate-300">
@@ -163,17 +161,16 @@ export const ReportIssue: React.FC<ReportIssueProps> = ({ onAddIssue }) => {
           </div>
 
           <div className="p-4 bg-slate-50 dark:bg-slate-800/50 border-t border-slate-100 dark:border-slate-700 flex justify-end space-x-3">
-            <button 
+            <button
               onClick={() => setAnalysis(null)}
               className="px-4 py-2 text-slate-600 dark:text-slate-400 hover:text-slate-800 dark:hover:text-slate-200 font-medium"
             >
               Cancel
             </button>
-            <button 
+            <button
               onClick={handleSubmit}
-              className={`px-6 py-2 text-white rounded-lg font-bold shadow-md flex items-center ${
-                analysis.type === ReportType.SUGGESTION ? 'bg-amber-600 hover:bg-amber-700' : 'bg-blue-600 hover:bg-blue-700'
-              }`}
+              className={`px-6 py-2 text-white rounded-lg font-bold shadow-md flex items-center ${analysis.type === ReportType.SUGGESTION ? 'bg-amber-600 hover:bg-amber-700' : 'bg-blue-600 hover:bg-blue-700'
+                }`}
             >
               <CheckCircle className="h-4 w-4 mr-2" />
               Submit {analysis.type}

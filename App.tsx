@@ -12,11 +12,11 @@ const App: React.FC = () => {
   const [currentView, setCurrentView] = useState<ViewState>('landing');
   const [issues, setIssues] = useState<IssueReport[]>(MOCK_ISSUES);
   const [isDarkMode, setIsDarkMode] = useState<boolean>(() => {
-    // Check local storage or system preference on initial load
+    // Default to dark mode, only use light if explicitly set
     if (typeof window !== 'undefined') {
-      return localStorage.theme === 'dark' || (!('theme' in localStorage) && window.matchMedia('(prefers-color-scheme: dark)').matches);
+      return localStorage.theme !== 'light';
     }
-    return false;
+    return true;
   });
 
   // Apply theme class to HTML element
@@ -46,7 +46,7 @@ const App: React.FC = () => {
   };
 
   const updateIssueStatus = (id: string, status: IssueStatus) => {
-    setIssues((prev) => prev.map(issue => 
+    setIssues((prev) => prev.map(issue =>
       issue.id === id ? { ...issue, status, resolvedAt: status === IssueStatus.RESOLVED ? Date.now() : undefined } : issue
     ));
   };

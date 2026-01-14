@@ -22,8 +22,8 @@ export const Layout: React.FC<LayoutProps> = ({ children, currentView, setView, 
       }}
       className={`flex items-center space-x-2 px-4 py-2 rounded-lg transition-all duration-200 font-medium text-sm
         ${currentView === view
-          ? 'bg-sakura text-white shadow-sakura scale-105'
-          : 'text-muted-foreground hover:bg-sakura-light/50 hover:text-sakura-dark hover:scale-105'
+          ? 'bg-[#F472B6] text-white shadow-lg'
+          : 'text-[#9CA3AF] hover:text-[#E5E7EB] hover:bg-white/5'
         }`}
     >
       <Icon size={18} />
@@ -32,17 +32,26 @@ export const Layout: React.FC<LayoutProps> = ({ children, currentView, setView, 
   );
 
   return (
-    <div className="min-h-screen flex flex-col bg-background text-foreground transition-colors duration-300 relative">
+    <div className="min-h-screen flex flex-col bg-background dark:bg-black text-foreground transition-colors duration-300 relative">
       <SakuraParticles />
 
       {/* Header */}
       <header className="sticky top-0 z-50 glass-panel border-b border-border transition-colors duration-300">
         <div className="max-w-[1400px] mx-auto px-4 sm:px-6 lg:px-8 h-16 flex items-center justify-between">
           <div className="flex items-center space-x-3 cursor-pointer group" onClick={() => setView('landing')}>
-            <div className="bg-gradient-to-br from-sakura-dark to-sakura p-2 rounded-lg shadow-sakura group-hover:shadow-glow transition-all duration-300">
-              <Activity className="text-white h-6 w-6" />
+            {/* Logo Icon */}
+            <div className="relative flex items-center justify-center w-10 h-10">
+              <div className="absolute inset-0 bg-[#F472B6] rounded-xl opacity-20 group-hover:opacity-40 blur-lg transition-opacity duration-300"></div>
+              <div className="relative bg-gradient-to-br from-[#F472B6] to-[#EC4899] p-2 rounded-xl">
+                <svg className="h-5 w-5 text-white" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                  <path d="M22 12h-4l-3 9L9 3l-3 9H2" />
+                </svg>
+              </div>
             </div>
-            <span className="text-2xl font-display font-bold text-gradient-sakura tracking-tight">CampusPulse AI</span>
+            {/* Logo Text */}
+            <span className="text-xl font-semibold tracking-tight text-white" style={{ fontFamily: "'Inter', sans-serif" }}>
+              Campus<span className="text-[#F472B6]">Pulse</span>
+            </span>
           </div>
 
           {/* Desktop Nav */}

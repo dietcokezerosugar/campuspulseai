@@ -3,6 +3,43 @@
   --sakura-main: 340 65% 65%;
   --sakura-dark: 340 70% 55%;
   --sakura-glow: 340 80% 75%;
+
+  /* Theme colors */
+  --background: 0 0% 98%;
+  --foreground: 240 10% 10%;
+  --border: 340 15% 88%;
+  --input: 340 15% 88%;
+}
+
+/* Dark mode theme colors - Custom Palette */
+.dark {
+  --background: 0 0% 0%;
+  /* #000000 - Pitch black */
+  --foreground: 220 13% 91%;
+  /* #E5E7EB - Primary text */
+  --border: 0 0% 100% / 0.12;
+  /* Glass border */
+  --input: 217 33% 17%;
+  /* #1F2937 - Elevated surface */
+
+  /* Card/Surface colors */
+  --card: 0 0% 6%;
+  /* #0F0F0F - Very dark gray for cards */
+  --card-foreground: 220 13% 91%;
+
+  /* Muted text */
+  --muted: 217 19% 27%;
+  /* #374151 */
+  --muted-foreground: 220 9% 46%;
+  /* #6B7280 */
+
+  /* Pink accent for dark mode */
+  --sakura-dark-accent: 330 86% 70%;
+  /* #F472B6 */
+  --sakura-dark-hover: 330 81% 60%;
+  /* #EC4899 */
+  --sakura-dark-glow: 330 86% 70% / 0.25;
+  /* Soft pink glow */
 }
 
 body {
@@ -11,6 +48,30 @@ body {
      but adding fallback here just in case */
   background-color: hsl(0 0% 98%);
   color: hsl(240 10% 10%);
+}
+
+/* Dark mode body styles */
+.dark body,
+html.dark body {
+  background-color: #000000;
+  /* Pitch black */
+  color: #E5E7EB;
+  /* Primary text */
+}
+
+/* Dark mode scrollbar */
+.dark ::-webkit-scrollbar-thumb {
+  background: #374151;
+  /* Muted background */
+}
+
+.dark ::-webkit-scrollbar-thumb:hover {
+  background: #4B5563;
+}
+
+.dark ::-webkit-scrollbar-track {
+  background: #0F0F0F;
+  /* Dark gray for cards */
 }
 
 .text-gradient-sakura {
@@ -34,8 +95,12 @@ body {
 }
 
 .dark .glass-panel {
-  background: hsla(240, 10%, 10%, 0.85);
-  border: 1px solid hsla(340, 15%, 88%, 0.2);
+  background: rgba(255, 255, 255, 0.06);
+  /* Glass background */
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  /* Glass border */
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
 }
 
 /* Custom Scrollbar */

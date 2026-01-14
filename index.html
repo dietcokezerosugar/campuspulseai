@@ -9,7 +9,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link
-    href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;0,700;1,400&family=IBM+Plex+Mono:wght@300;400;500&family=Montserrat:wght@300;400;500;600;700&display=swap"
+    href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;0,700;1,400&family=IBM+Plex+Mono:wght@300;400;500&family=Inter:wght@400;500;600;700&family=Montserrat:wght@300;400;500;600;700&display=swap"
     rel="stylesheet">
 
   <script src="https://cdn.tailwindcss.com"></script>
@@ -24,11 +24,11 @@
             mono: ['"IBM Plex Mono"', 'monospace'],
           },
           colors: {
-            border: 'hsl(340 15% 88%)',
-            input: 'hsl(340 15% 88%)',
+            border: 'hsl(var(--border, 340 15% 88%))',
+            input: 'hsl(var(--input, 340 15% 88%))',
             ring: 'hsl(340 65% 65%)',
-            background: 'hsl(0 0% 98%)',
-            foreground: 'hsl(240 10% 10%)',
+            background: 'hsl(var(--background, 0 0% 98%))',
+            foreground: 'hsl(var(--foreground, 240 10% 10%))',
             primary: {
               DEFAULT: 'hsl(340 65% 65%)',
               foreground: 'hsl(0 0% 100%)',
@@ -144,11 +144,6 @@
 <body
   class="bg-background text-foreground transition-colors duration-300 antialiased overflow-x-hidden selection:bg-sakura selection:text-white">
   <div id="root"></div>
-  <script>
-    // Enforcing Sakura Light Theme for consistency
-    document.documentElement.classList.remove('dark');
-    localStorage.theme = 'light';
-  </script>
   <script type="module" src="/index.tsx"></script>
 </body>
 
