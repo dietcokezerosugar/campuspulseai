@@ -61,24 +61,10 @@ export const Layout: React.FC<LayoutProps> = ({ children, currentView, setView, 
             <div className="h-6 w-px bg-border mx-2"></div>
             <NavItem view="admin" label="Admin" icon={LayoutDashboard} />
             <NavItem view="authority" label="Authority" icon={ShieldCheck} />
-
-            <button
-              onClick={toggleTheme}
-              className="ml-4 p-2 rounded-lg text-muted-foreground hover:bg-sakura-light/50 hover:text-sakura-dark transition-colors"
-              aria-label="Toggle Dark Mode"
-            >
-              {isDarkMode ? <Sun size={20} /> : <Moon size={20} />}
-            </button>
           </nav>
 
           {/* Mobile Menu Button */}
           <div className="md:hidden flex items-center space-x-4">
-            <button
-              onClick={toggleTheme}
-              className="p-2 rounded-lg text-muted-foreground"
-            >
-              {isDarkMode ? <Sun size={20} /> : <Moon size={20} />}
-            </button>
             <button
               className="p-2 text-muted-foreground"
               onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
