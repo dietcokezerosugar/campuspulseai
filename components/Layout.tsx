@@ -22,8 +22,8 @@ export const Layout: React.FC<LayoutProps> = ({ children, currentView, setView, 
       }}
       className={`flex items-center space-x-2 px-4 py-2 rounded-lg transition-all duration-200 font-medium text-sm
         ${currentView === view
-          ? 'bg-[#F472B6] text-white shadow-lg'
-          : 'text-[#9CA3AF] hover:text-[#E5E7EB] hover:bg-white/5'
+          ? 'bg-[#F472B6]/10 text-[#F472B6] border border-[#F472B6]/30'
+          : 'text-[#6B7280] hover:text-[#E5E7EB] border border-transparent'
         }`}
     >
       <Icon size={18} />

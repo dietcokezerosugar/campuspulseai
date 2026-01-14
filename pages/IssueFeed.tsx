@@ -23,35 +23,35 @@ export const IssueFeed: React.FC<IssueFeedProps> = ({ issues }) => {
           <p className="text-slate-500 dark:text-[#9CA3AF] text-sm">Real-time status of reported problems and suggestions</p>
         </div>
 
-        <div className="flex flex-wrap gap-3">
+        <div className="flex flex-wrap gap-4">
           {/* Status Filter */}
-          <div className="flex space-x-1 bg-white dark:bg-[#111827] p-1 rounded-lg border border-slate-200 dark:border-white/10 shadow-sm">
+          <div className="flex items-center gap-1 p-1 rounded-full bg-[#0A0A0A] border border-white/5">
             {['ALL', IssueStatus.OPEN, IssueStatus.IN_PROGRESS, IssueStatus.RESOLVED].map((status) => (
               <button
                 key={status}
                 onClick={() => setFilter(status as any)}
-                className={`px-3 py-1.5 rounded-md text-xs font-bold transition-all ${filter === status
-                  ? 'bg-slate-900 dark:bg-[#F472B6] text-white shadow'
-                  : 'text-slate-500 dark:text-[#9CA3AF] hover:bg-slate-50 dark:hover:bg-[#1F2937]'
+                className={`px-4 py-1.5 rounded-full text-xs font-medium transition-all duration-200 ${filter === status
+                  ? 'bg-[#F472B6]/15 text-[#F472B6] border border-[#F472B6]/30'
+                  : 'text-[#6B7280] hover:text-[#9CA3AF] border border-transparent'
                   }`}
               >
-                {status === 'ALL' ? 'All Status' : status}
+                {status === 'ALL' ? 'All' : status.replace('_', ' ')}
               </button>
             ))}
           </div>
 
           {/* Type Filter */}
-          <div className="flex space-x-1 bg-white dark:bg-[#111827] p-1 rounded-lg border border-slate-200 dark:border-white/10 shadow-sm">
+          <div className="flex items-center gap-1 p-1 rounded-full bg-[#0A0A0A] border border-white/5">
             {['ALL', ReportType.PROBLEM, ReportType.SUGGESTION].map((type) => (
               <button
                 key={type}
                 onClick={() => setTypeFilter(type as any)}
-                className={`px-3 py-1.5 rounded-md text-xs font-bold transition-all ${typeFilter === type
-                  ? 'bg-blue-600 text-white shadow'
-                  : 'text-slate-500 dark:text-[#9CA3AF] hover:bg-slate-50 dark:hover:bg-[#1F2937]'
+                className={`px-4 py-1.5 rounded-full text-xs font-medium transition-all duration-200 ${typeFilter === type
+                  ? 'bg-[#F472B6]/15 text-[#F472B6] border border-[#F472B6]/30'
+                  : 'text-[#6B7280] hover:text-[#9CA3AF] border border-transparent'
                   }`}
               >
-                {type === 'ALL' ? 'All Types' : type}
+                {type === 'ALL' ? 'All' : type}
               </button>
             ))}
           </div>

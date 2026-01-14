@@ -11,7 +11,7 @@ export const Landing: React.FC<LandingProps> = ({ setView }) => {
     <div className="flex flex-col items-center justify-center space-y-16 py-16 animate-fade-in relative z-10">
       <div className="text-center max-w-4xl space-y-8 glass-panel p-8 md:p-12 rounded-[2.5rem] relative overflow-hidden backdrop-blur-2xl bg-white/60 dark:bg-[#0A0A0A]/90 border border-white/40 dark:border-white/5 shadow-xl">
         {/* Decorative blur blob behind text */}
-        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-64 h-64 bg-sakura/20 rounded-full blur-3xl pointer-events-none -z-10"></div>
+        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-64 h-64 bg-[#F472B6]/10 rounded-full blur-3xl pointer-events-none -z-10"></div>
 
         <div className="inline-flex items-center px-4 py-2 rounded-full bg-[#0F0F0F] border border-[#F472B6]/30 text-[#F472B6] text-sm font-medium mb-6 shadow-lg shadow-[#F472B6]/10 animate-fade-up" style={{ animationDelay: '0.1s' }}>
           <span className="relative flex h-2 w-2 mr-2">
