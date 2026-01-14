@@ -103,44 +103,43 @@ export const ReportIssue: React.FC<ReportIssueProps> = ({ onAddIssue }) => {
         </div>
       </div>
 
-      {/* Analysis Result Card */}
       {analysis && (
-        <div className="bg-white dark:bg-slate-800 rounded-2xl shadow-lg border border-blue-100 dark:border-slate-600 overflow-hidden animate-in fade-in slide-in-from-bottom-4 duration-500">
+        <div className="bg-[#0A0A0A] rounded-2xl shadow-lg border border-white/5 overflow-hidden animate-in fade-in slide-in-from-bottom-4 duration-500">
           <div className={`p-4 border-b flex justify-between items-center ${analysis.type === ReportType.SUGGESTION
-            ? 'bg-amber-50 dark:bg-amber-900/20 border-amber-100 dark:border-amber-800/30'
-            : 'bg-blue-50 dark:bg-blue-900/20 border-blue-100 dark:border-blue-800/30'
+            ? 'bg-[#F59E0B]/10 border-[#F59E0B]/20'
+            : 'bg-[#3B82F6]/10 border-[#3B82F6]/20'
             }`}>
-            <h3 className={`font-bold flex items-center ${analysis.type === ReportType.SUGGESTION ? 'text-amber-900 dark:text-amber-400' : 'text-blue-900 dark:text-blue-400'
+            <h3 className={`font-bold flex items-center ${analysis.type === ReportType.SUGGESTION ? 'text-[#F59E0B]' : 'text-[#3B82F6]'
               }`}>
               {analysis.type === ReportType.SUGGESTION ? (
-                <Lightbulb className="h-4 w-4 mr-2 text-amber-600 dark:text-amber-400" />
+                <Lightbulb className="h-4 w-4 mr-2" />
               ) : (
-                <AlertOctagon className="h-4 w-4 mr-2 text-blue-600 dark:text-blue-400" />
+                <AlertOctagon className="h-4 w-4 mr-2" />
               )}
               Detected: {analysis.type}
             </h3>
-            <span className="text-xs font-medium text-slate-500 dark:text-slate-400 bg-white/50 dark:bg-slate-800/50 px-2 py-1 rounded-full">
+            <span className="text-xs font-medium text-[#9CA3AF] bg-[#0F0F0F] px-3 py-1 rounded-full border border-white/10">
               {(analysis.confidence * 100).toFixed(0)}% Confidence
             </span>
           </div>
 
           <div className="p-6 grid gap-6 md:grid-cols-2">
             <div className="space-y-1">
-              <label className="text-xs font-bold text-slate-400 uppercase tracking-wider">Summary</label>
-              <p className="font-semibold text-slate-900 dark:text-white text-lg">{analysis.summary}</p>
+              <label className="text-xs font-bold text-[#6B7280] uppercase tracking-wider">Summary</label>
+              <p className="font-semibold text-[#E5E7EB] text-lg">{analysis.summary}</p>
             </div>
 
             <div className="space-y-1">
-              <label className="text-xs font-bold text-slate-400 uppercase tracking-wider">Location</label>
-              <div className="flex items-center text-slate-700 dark:text-slate-300">
-                <MapPin className="h-4 w-4 mr-1 text-slate-400" />
+              <label className="text-xs font-bold text-[#6B7280] uppercase tracking-wider">Location</label>
+              <div className="flex items-center text-[#9CA3AF]">
+                <MapPin className="h-4 w-4 mr-1 text-[#6B7280]" />
                 {analysis.location}
               </div>
             </div>
 
             <div className="space-y-1">
-              <label className="text-xs font-bold text-slate-400 uppercase tracking-wider">Category</label>
-              <span className="inline-flex items-center px-2.5 py-0.5 rounded-full text-sm font-medium bg-indigo-100 dark:bg-indigo-900/50 text-indigo-800 dark:text-indigo-300">
+              <label className="text-xs font-bold text-[#6B7280] uppercase tracking-wider">Category</label>
+              <span className="inline-flex items-center px-2.5 py-0.5 rounded-full text-sm font-medium bg-[#F472B6]/15 text-[#F472B6] border border-[#F472B6]/30">
                 {analysis.category}
               </span>
             </div>
@@ -153,23 +152,23 @@ export const ReportIssue: React.FC<ReportIssueProps> = ({ onAddIssue }) => {
             </div>
 
             <div className="md:col-span-2 space-y-1">
-              <label className="text-xs font-bold text-slate-400 uppercase tracking-wider">Routing To</label>
-              <div className="p-3 bg-slate-50 dark:bg-slate-900 rounded-lg text-slate-700 dark:text-slate-300 font-mono text-sm border border-slate-100 dark:border-slate-700">
+              <label className="text-xs font-bold text-[#6B7280] uppercase tracking-wider">Routing To</label>
+              <div className="p-3 bg-[#0F0F0F] rounded-lg text-[#9CA3AF] font-mono text-sm border border-white/5">
                 &rarr; {analysis.department}
               </div>
             </div>
           </div>
 
-          <div className="p-4 bg-slate-50 dark:bg-slate-800/50 border-t border-slate-100 dark:border-slate-700 flex justify-end space-x-3">
+          <div className="p-4 bg-[#0F0F0F] border-t border-white/5 flex justify-end space-x-3">
             <button
               onClick={() => setAnalysis(null)}
-              className="px-4 py-2 text-slate-600 dark:text-slate-400 hover:text-slate-800 dark:hover:text-slate-200 font-medium"
+              className="px-4 py-2 text-[#6B7280] hover:text-[#E5E7EB] font-medium transition-colors"
             >
               Cancel
             </button>
             <button
               onClick={handleSubmit}
-              className={`px-6 py-2 text-white rounded-lg font-bold shadow-md flex items-center ${analysis.type === ReportType.SUGGESTION ? 'bg-amber-600 hover:bg-amber-700' : 'bg-blue-600 hover:bg-blue-700'
+              className={`px-6 py-2 text-white rounded-lg font-bold shadow-md flex items-center transition-colors ${analysis.type === ReportType.SUGGESTION ? 'bg-[#F59E0B] hover:bg-[#D97706]' : 'bg-[#3B82F6] hover:bg-[#2563EB]'
                 }`}
             >
               <CheckCircle className="h-4 w-4 mr-2" />
@@ -187,10 +186,10 @@ import { Zap } from 'lucide-react';
 
 const PriorityBadge = ({ priority }: { priority: IssuePriority }) => {
   const colors = {
-    [IssuePriority.LOW]: 'bg-slate-100 text-slate-600 dark:bg-slate-700 dark:text-slate-300',
-    [IssuePriority.MEDIUM]: 'bg-yellow-100 text-yellow-700 dark:bg-yellow-900/30 dark:text-yellow-400',
-    [IssuePriority.HIGH]: 'bg-orange-100 text-orange-700 dark:bg-orange-900/30 dark:text-orange-400',
-    [IssuePriority.CRITICAL]: 'bg-red-100 text-red-700 dark:bg-red-900/30 dark:text-red-400',
+    [IssuePriority.LOW]: 'bg-[#22C55E]/15 text-[#22C55E] border border-[#22C55E]/30',
+    [IssuePriority.MEDIUM]: 'bg-[#F59E0B]/15 text-[#F59E0B] border border-[#F59E0B]/30',
+    [IssuePriority.HIGH]: 'bg-[#F97316]/15 text-[#F97316] border border-[#F97316]/30',
+    [IssuePriority.CRITICAL]: 'bg-[#EF4444]/15 text-[#EF4444] border border-[#EF4444]/30',
   };
 
   return (
