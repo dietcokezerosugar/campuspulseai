@@ -1,16 +1,17 @@
 import React, { useState, useEffect } from 'react';
 import { ViewState, IssueReport, IssueStatus } from './types';
-import { MOCK_ISSUES } from './constants';
 import { Layout } from './components/Layout';
 import { Landing } from './pages/Landing';
 import { ReportIssue } from './pages/ReportIssue';
 import { IssueFeed } from './pages/IssueFeed';
 import { AdminDashboard } from './pages/AdminDashboard';
 import { AuthorityView } from './pages/AuthorityView';
+import { fetchAllIssues, createIssue, updateIssueStatus as updateIssueStatusInDb } from './services/issueService';
 
 const App: React.FC = () => {
   const [currentView, setCurrentView] = useState<ViewState>('landing');
-  const [issues, setIssues] = useState<IssueReport[]>(MOCK_ISSUES);
+  const [issues, setIssues] = useState<IssueReport[]>([]);
+  const [isLoading, setIsLoading] = useState(true);
   const [isDarkMode, setIsDarkMode] = useState<boolean>(() => {
     // Default to dark mode, only use light if explicitly set
     if (typeof window !== 'undefined') {
@@ -34,21 +35,40 @@ const App: React.FC = () => {
     setIsDarkMode(prev => !prev);
   };
 
-  // In a real app, we would fetch from Firestore here
+  // Fetch issues from Supabase on mount
   useEffect(() => {
-    // Simulating loading data
-    console.log("App initialized with mock data.");
+    const loadIssues = async () => {
+      try {
+        const data = await fetchAllIssues();
+        setIssues(data);
+      } catch (error) {
+        console.error('Failed to load issues:', error);
+      } finally {
+        setIsLoading(false);
+      }
+    };
+    loadIssues();
   }, []);
 
-  const addIssue = (newIssue: IssueReport) => {
-    setIssues((prev) => [newIssue, ...prev]);
-    setCurrentView('feed');
+  const addIssue = async (newIssue: IssueReport) => {
+    try {
+      const createdIssue = await createIssue(newIssue);
+      setIssues((prev) => [createdIssue, ...prev]);
+      setCurrentView('feed');
+    } catch (error) {
+      console.error('Failed to create issue:', error);
+    }
   };
 
-  const updateIssueStatus = (id: string, status: IssueStatus) => {
-    setIssues((prev) => prev.map(issue =>
-      issue.id === id ? { ...issue, status, resolvedAt: status === IssueStatus.RESOLVED ? Date.now() : undefined } : issue
-    ));
+  const updateIssueStatus = async (id: string, status: IssueStatus) => {
+    try {
+      await updateIssueStatusInDb(id, status);
+      setIssues((prev) => prev.map(issue =>
+        issue.id === id ? { ...issue, status, resolvedAt: status === IssueStatus.RESOLVED ? Date.now() : undefined } : issue
+      ));
+    } catch (error) {
+      console.error('Failed to update issue status:', error);
+    }
   };
 
   const renderContent = () => {
